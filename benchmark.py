@@ -11,7 +11,7 @@ def gen_keys(conversations):
 
 
 def print_per_second(operations, t1, t2):
-    per_second = operations / (t2-t1)
+    per_second = int(operations / (t2-t1))
     print(f"{per_second} operations per second\n")
 
 
