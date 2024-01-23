@@ -13,6 +13,11 @@ class PostgresCache():
             updated_at timestamp);
         """
 
+    CREATE_INDEX = """
+        CREATE INDEX IF NOT EXISTS timestamps
+            ON cache (updated_at)
+        """
+
     UPDATE_STATEMENT = """
         UPDATE cache
            SET value=%s, updated_at=CURRENT_TIMESTAMP
@@ -39,6 +44,7 @@ class PostgresCache():
         cur = self.conn.cursor()
         try:
             cur.execute(PostgresCache.CREATE_CACHE_TABLE)
+            cur.execute(PostgresCache.CREATE_INDEX)
             cur.execute("delete from cache")
         except Exception as e:
             print(e)
