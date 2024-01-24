@@ -3,6 +3,7 @@ import time
 import uuid
 
 from postgres_cache import PostgresCache
+from sqlite_cache import SQLiteCache
 from redis_cache import RedisCache
 
 
@@ -37,28 +38,47 @@ def benchmark_get(cache, keys, get_count):
     print_per_second(get_count, t1, t2)
 
 
+def print_title(title):
+    print(title)
+    print("-" * 40)
+
+def benchmark_postgres_cache(cache_limit, conversations, append_count, get_count):
+    print_title("Postgres cache")
+    cache = PostgresCache("dbname=test1 user=ptisnovs password=123qwe", capacity=cache_limit)
+
+    keys = gen_keys(conversations)
+    benchmark_insert_or_append(cache, keys, append_count)
+    benchmark_get(cache, keys, get_count)
+
+
+def benchmark_sqlite_cache(cache_limit, conversations, append_count, get_count):
+    print_title("SQLite cache")
+    cache = SQLiteCache("test.db", capacity=cache_limit)
+
+    keys = gen_keys(conversations)
+    benchmark_insert_or_append(cache, keys, append_count)
+    benchmark_get(cache, keys, get_count)
+
+
+def benchmark_redis_cache(cache_limit, conversations, append_count, get_count):
+    print_title("Redis cache")
+    cache = RedisCache()
+
+    keys = gen_keys(conversations)
+    benchmark_insert_or_append(cache, keys, append_count)
+    benchmark_get(cache, keys, get_count)
+
+
 # benchmark settings
 cache_limit = 500
 conversations = 1000
 append_count = 10000
 get_count = 100000
 
-print("Postgres cache")
-print("-" * 40)
-cache = PostgresCache("dbname=test1 user=ptisnovs password=123qwe", capacity=cache_limit)
-
-keys = gen_keys(conversations)
-benchmark_insert_or_append(cache, keys, append_count)
-benchmark_get(cache, keys, get_count)
+#benchmark_postgres_cache(cache_limit, conversations, append_count, get_count)
 print()
 print()
-
-
-print("Redis cache")
-print("-" * 40)
-cache = RedisCache()
-
-keys = gen_keys(conversations)
-benchmark_insert_or_append(cache, keys, append_count)
-benchmark_get(cache, keys, get_count)
-
+#benchmark_redis_cache(cache_limit, conversations, append_count, get_count)
+print()
+print()
+benchmark_sqlite_cache(cache_limit, conversations, append_count, get_count)
