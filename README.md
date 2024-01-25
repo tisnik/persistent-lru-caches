@@ -9,6 +9,7 @@ https://redis.io/
 ### Pros
 
 1. Super fast inserts/updates
+1. Horizontally scalable
 1. HA variant with sentinel (checked, https://redis.io/docs/management/sentinel/)
 1. Experience - high (use it in prod for long time)
 
@@ -18,6 +19,24 @@ https://redis.io/
 1. Key eviction algoritmh sometimes evicts multiple values when not needed (see/run `check_redis.py`)
 1. Not fully configurable (# of keys vs. maxmem value)
 1. Need Redis 7 (older versions seems to be broken)
+1. Backups etc. - not managed
+
+
+
+## Memcached
+
+https://memcached.org/
+
+### Pros
+
+1. Eviction mechanisms
+1. Horizontally scalable
+1. Easy to deploy and configure
+
+### Cons
+
+1. Slow inserts
+1. A bit slower gets
 1. Backups etc. - not managed
 
 
@@ -131,5 +150,15 @@ Redis cache
 
 100000 gets performed in 1 seconds
 62017 operations per second
+
+
+
+Memcached cache
+----------------------------------------
+10000 inserts/appends performed in 408 seconds
+24 operations per second
+
+100000 gets performed in 2 seconds
+35212 operations per second
 ```
 
