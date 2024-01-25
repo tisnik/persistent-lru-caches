@@ -5,6 +5,7 @@ import uuid
 from postgres_cache import PostgresCache
 from sqlite_cache import SQLiteCache
 from redis_cache import RedisCache
+from memcached_cache import MemcacheCache
 
 
 def gen_keys(conversations):
@@ -69,6 +70,15 @@ def benchmark_redis_cache(cache_limit, conversations, append_count, get_count):
     benchmark_get(cache, keys, get_count)
 
 
+def benchmark_memcached_cache(cache_limit, conversations, append_count, get_count):
+    print_title("Memcached cache")
+    cache = MemcacheCache()
+
+    keys = gen_keys(conversations)
+    benchmark_insert_or_append(cache, keys, append_count)
+    benchmark_get(cache, keys, get_count)
+
+
 # benchmark settings
 cache_limit = 500
 conversations = 1000
@@ -81,4 +91,7 @@ print()
 #benchmark_redis_cache(cache_limit, conversations, append_count, get_count)
 print()
 print()
-benchmark_sqlite_cache(cache_limit, conversations, append_count, get_count)
+#benchmark_sqlite_cache(cache_limit, conversations, append_count, get_count)
+print()
+print()
+benchmark_memcached_cache(cache_limit, conversations, append_count, get_count)
