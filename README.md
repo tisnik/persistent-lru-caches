@@ -162,3 +162,7 @@ Memcached cache
 35212 operations per second
 ```
 
+## Graphs from benchmarks
+
+![Inserts/appends](docs/inserts_appends.png)
+![Gets](docs/gets.png)
