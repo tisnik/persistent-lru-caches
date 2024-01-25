@@ -12,6 +12,7 @@ https://redis.io/
 1. Horizontally scalable
 1. HA variant with sentinel (checked, https://redis.io/docs/management/sentinel/)
 1. Experience - high (use it in prod for long time)
+1. TLS - yes (https://docs.redis.com/latest/rs/security/encryption/tls/)
 
 ### Cons
 
@@ -32,6 +33,7 @@ https://memcached.org/
 1. Eviction mechanisms
 1. Horizontally scalable
 1. Easy to deploy and configure
+1. TLS - yes (https://github.com/memcached/memcached/wiki/TLS)
 
 ### Cons
 
@@ -50,6 +52,7 @@ https://infinispan.org/
 1. Resilient
 1. HA variant
 1. RH product
+1. TLS - yes (https://infinispan.org/docs/stable/titles/security/security.html#configuring-encryption)
 
 ### Cons
 
@@ -73,6 +76,7 @@ https://www.postgresql.org/
 1. Very mature Python client
 1. Experience - high (use it in prod for long time)
 1. Supported (RDS et al)
+1. TLS - yes (https://www.postgresql.org/docs/current/ssl-tcp.html)
 
 ### Cons
 
@@ -91,6 +95,7 @@ https://www.sqlite.org/index.html
 1. Fastest GET operation
 1. Suppport? Would it be needed in this situation where it "is in Python"
 1. Experience - high
+1. TLS - yes (https://www.unrepo.com/sqlite/secure-communication-with-ssltls-in-sqlite-tutorial)
 
 ### Cons
 
