@@ -9,7 +9,7 @@ https://redis.io/
 ### Pros
 
 1. Super fast inserts/updates
-1. Horizontally scalable
+1. Horizontally scalable, Redis Cluster
 1. HA variant with sentinel (checked, https://redis.io/docs/management/sentinel/)
 1. Experience - high (use it in prod for long time)
 1. TLS - yes (https://docs.redis.com/latest/rs/security/encryption/tls/)
@@ -21,6 +21,11 @@ https://redis.io/
 1. Not fully configurable (# of keys vs. maxmem value)
 1. Need Redis 7 (older versions seems to be broken)
 1. Backups etc. - not managed
+
+
+### Configs for testing
+
+[Nodes, sentinel, and cluster configurations](redis/)
 
 
 
